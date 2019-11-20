@@ -1,0 +1,20 @@
+<%- include('header')%>
+    
+
+        <h2>Open roles:</h2>
+        <% categories.forEach(  category => { %>
+        <div>
+            <h3><%- category.category %></h3>
+            <ul>
+                <% category.vagas.forEach( vaga => { %>
+                <li><a href="vaga/<%- vaga.id %>"><%- vaga.title %></a></li>
+                <% }) %>
+            </ul>
+        </div>
+        <% }) %>
+
+
+         <!–– %- date% this is the scope symbol ––>
+    
+<%- include('footer') %>
+

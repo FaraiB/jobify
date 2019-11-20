@@ -1,0 +1,24 @@
+<%- include('header')%>
+    <h2>
+        New Vacancy:
+        <a href="/admin/vagas">Vacancies</a>
+    </h2>
+    <div>
+        <form method = "POST">
+            <label>Title:</label>
+            <input type="text" name="title">
+            <br>
+            <label> Description:</label>
+            <textarea name="description"></textarea>
+            <br>
+            <label>Category:</label>
+            <select name = "category">
+                <% categories.forEach(category => { %>
+                <option value = "<%= category.id %>"><%= category.category %></option>
+                <% }) %>
+            </select>
+            <br>
+            <button>Save vacancy</button>
+        </form>
+    </div>
+<%- include('footer') %>
