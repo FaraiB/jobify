@@ -2,8 +2,10 @@ const express = require('express')// in order to use express dependency
 const app = express()
 const bodyParser = require('body-parser')
 
+const path = require('path')
+
 const sqlite = require('sqlite')
-const dbConnection = sqlite.open('database.sqlite', {Promise})
+const dbConnection = sqlite.open(path.resolve(__dirname,'database.sqlite'), {Promise})
 
 const port = process.env.PORT || 3000 //will use env variable port or 3000
 
