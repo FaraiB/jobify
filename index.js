@@ -9,6 +9,15 @@ const dbConnection = sqlite.open(path.resolve(__dirname,'database.sqlite'), {Pro
 
 const port = process.env.PORT || 3000 //will use env variable port or 3000
 
+app.use('/admin', (req, res, next) =>{
+    if(req.hostname === 'localhost'){
+        next()
+    }else{
+        res.send('Not allowed')
+    }
+
+})
+
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 app.use(express.static(path.join(__dirname,'public')))
