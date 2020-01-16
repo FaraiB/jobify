@@ -13,7 +13,7 @@
             <br>
             <label>Category:</label>
             <select name = "category">
-                <% categories.forEach(category => { %>
+                <% locals.categories.forEach(category => { %>
                 <option value = "<%= category.id %>" <% if(category.id == vaga.category){ %>selected<% } %>><%= category.category %></option>
                 <% }) %>
             </select>

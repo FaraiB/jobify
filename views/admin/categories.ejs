@@ -5,7 +5,7 @@
     </h2>
     <div>
         <ul>
-            <% categories.forEach( category => { %>
+            <% locals.categories.forEach( category => { %>
             <li>
                 <%- category.category %> |
                 <a href="/admin/categories/editar/<%- category.id %>">Edit</a>
