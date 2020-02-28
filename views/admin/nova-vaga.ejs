@@ -5,11 +5,25 @@
     </h2>
     <div>
         <form method = "POST">
+        <div class="form-group">
             <label>Title:</label>
-            <input type="text" name="title">
+             <input name="title" type="text" class="form-control  is-invalid " placeholder="" value ="<%= form.title %>">                        
+                    <% if(errors.indexOf('title') >= 0) { %>
+                    <div class="invalid-feedback">
+                        Please provide a title
+                    </div>
+                    <% } %>
+            </div>
             <br>
+            <div class="form-group">
             <label> Description:</label>
-            <textarea name="description"></textarea>
+            <textarea name="description" class="form-control is-invalid" placeholder="" ><%= form.description %></textarea>
+                <% if(errors.indexOf('description') >= 0) { %>
+                <div class="invalid-feedback">
+                    Please provide a description
+                </div>
+                <% } %>
+            </div>
             <br>
             <label>Category:</label>
             <select name = "category">

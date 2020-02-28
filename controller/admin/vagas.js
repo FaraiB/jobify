@@ -9,12 +9,31 @@ const deleteAdminVaga = dbConnection => async(req, res) => {
     res.redirect('/admin/vagas')
 }
 const newAdminVaga = async(req, res) =>{
-    res.render('admin/nova-vaga')
+    res.render('admin/nova-vaga', {
+        form: {},
+        errors: []
+    })
 }
 const insertAdminVaga = dbConnection => async(req, res) =>{
     const db = await dbConnection
-    await vaga.insertVaga(db)(req)
-    res.redirect('/admin/vagas')
+    if(req.method === 'GET'){
+        res.render('admin/nova-vaga', {
+            form: {},
+            errors: []
+        })
+   }
+    else{
+        try{
+            await vaga.insertVaga(db)(req)
+            res.redirect('/admin/vagas')
+        }catch(err){
+            res.render('admin/nova-vaga', {
+                form: req.body,
+                errors: err.errors.fields
+            })
+        }
+   }
+    
 }
 const editAdminVaga = dbConnection => async(req, res) =>{
     const db = await dbConnection

@@ -8,13 +8,32 @@ const deleteAdminCategories = dbConnection => async(req, res) => {
     await category.deleteCategory(db)(req.params.id)
     res.redirect('/admin/categories')
 }
-const newAdminCategories = async(req, res) =>{
-    res.render('admin/nova-category')
-}
+/*const newAdminCategories = async(req, res) =>{
+    res.render('admin/nova-category',  {
+        form: {},
+        errors: []
+    })
+}*/
 const insertAdminCategories = dbConnection => async(req, res) =>{
     const db = await dbConnection
-    await category.insertCategory(db)(req)
-    res.redirect('/admin/categories')
+    if(req.method === 'GET'){
+        res.render('admin/nova-category', {
+            form: {},
+            errors: []
+        }) 
+    }else{
+        try{
+            await category.insertCategory(db)(req)
+            res.redirect('/admin/categories')
+        }catch(err){
+            res.render('admin/nova-category',{
+                form: req.body,
+                errors: err.errors.fields
+            })
+        }
+    }
+    
+    
 }
 const editAdminCategories = dbConnection => async(req, res) =>{
     const db = await dbConnection
@@ -30,7 +49,7 @@ const updateAdminCategories = dbConnection => async(req, res) =>{
 module.exports = {
     getAdminCategories, 
     deleteAdminCategories, 
-    newAdminCategories, 
+    //newAdminCategories, 
     insertAdminCategories, 
     editAdminCategories, 
     updateAdminCategories

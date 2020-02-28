@@ -1,12 +1,19 @@
-<%- include('header')%>
+ <%- include('header')%>
     <h2>
         New Category:
         <a href="/admin/categories">Categories</a>
     </h2>
     <div>
         <form method = "POST">
+            <div class="form-group">
             <label>Category:</label>
-            <input type="text" name="category">
+                    <input name="category" type="text" class="form-control is-invalid " placeholder="" value ="<%= form.category %>">                        
+                    <% if(errors.indexOf('category') >= 0) { %>
+                    <div class="invalid-feedback">
+                        Please provide a category                       
+                    </div>
+                    <% } %>
+            </div>
             <br>
             <button>Save category</button>
         </form>
